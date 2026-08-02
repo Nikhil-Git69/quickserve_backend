@@ -10,6 +10,7 @@ import tableRoute from "./routes/tableRoute.js"
 import checkoutRoute from "./routes/checkoutRoute.js"
 import categoryRoute from "./routes/categoryRoutes.js"
 import menuRoute from "./routes/menuRoutes.js"
+import cors from "cors";
 
 
 dotenv.config();
@@ -18,6 +19,10 @@ const app = express();
 connectDB();
 
 //middlewares
+app.use(cors({
+    origin: true,
+    credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 
