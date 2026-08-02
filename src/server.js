@@ -8,6 +8,8 @@ import cookieParser from "cookie-parser";
 import orderRoute from "./routes/orderRoute.js"
 import tableRoute from "./routes/tableRoute.js"
 import checkoutRoute from "./routes/checkoutRoute.js"
+import categoryRoute from "./routes/categoryRoutes.js"
+import menuRoute from "./routes/menuRoutes.js"
 
 
 dotenv.config();
@@ -30,6 +32,8 @@ app.use("/api/user", userRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/table", tableRoute);
 app.use("/api/checkout", checkoutRoute);
+app.use("/api/category", categoryRoute);
+app.use("/api/menu", menuRoute);
 
 console.log(config.nodeEnv);
 

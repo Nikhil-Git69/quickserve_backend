@@ -15,6 +15,8 @@ const register = async (req, res, next) => {
             return next(createHttpError(400, "All fields are required!"));
         }
 
+        const isAdmin = role === 'Admin';
+
         const isUserPresent = await User.findOne({ email });
 
         if (isUserPresent) {
@@ -26,7 +28,7 @@ const register = async (req, res, next) => {
             phone,
             email,
             password,
-            role,
+            isAdmin,
         });
 
         await newUser.save();
