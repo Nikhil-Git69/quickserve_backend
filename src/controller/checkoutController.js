@@ -31,6 +31,15 @@ const checkoutOrder = async (req, res, next) => {
             );
         }
 
+        if (order.bills.totalWithTax <= 0) {
+            return next(
+                createHttpError(
+                    400,
+                    "Order total is zero"
+                )
+            );
+        }
+
         order.paymentMethod = paymentMethod;
         order.paymentStatus = "Paid";
         order.orderStatus = "Completed";
@@ -39,7 +48,6 @@ const checkoutOrder = async (req, res, next) => {
 
         await order.save();
 
-        // Release table after successful checkout
         if (order.table) {
             await Table.findByIdAndUpdate(
                 order.table,
